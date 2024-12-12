@@ -50,12 +50,4 @@ public class BookingDAO {
         }
         return Optional.empty();
     }
-    @SneakyThrows
-    public boolean updateBookingStatus(int bookingId, String status){
-        Connection connection = ConnectionUtil.getConnection();
-        PreparedStatement statement = connection.prepareStatement(UPDATE_BOOKING_STATUS);
-        statement.setString(1, status);
-        statement.setInt(2, bookingId);
-        return statement.executeUpdate()>0;
-    }
 }

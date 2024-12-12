@@ -23,6 +23,10 @@ public class ConfirmBookingServlet extends HttpServlet {
         String customerName = req.getParameter("customer_name");
         String mobileNumber = req.getParameter("mobile_number");
         String roomNumberStr = req.getParameter("room_number");
+        if (roomNumberStr == null || roomNumberStr.trim().isEmpty()) {
+            resp.getWriter().println("Room number is required.");
+            return;
+        }
         String bookingDateStr = req.getParameter("booking_date");
         try{
             int roomNumber = Integer.parseInt(roomNumberStr);
@@ -37,8 +41,9 @@ public class ConfirmBookingServlet extends HttpServlet {
             bookingDAO.confirmBooking(booking);
             bookingController.confirmBooking(booking);
             resp.getWriter().println("Booking Confirmed Successfully!!!");
+
         }catch (NumberFormatException e) {
-            resp.getWriter().println("Invalid room number.");
+            resp.getWriter().println("Invalid room number. Please enter a valid numeric value." + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             resp.getWriter().println("Error confirming booking: " + e.getMessage());

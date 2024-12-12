@@ -8,19 +8,29 @@
 <body>
 <h2>Confirm Booking</h2>
 <form action="confirmBooking" method="POST">
-    <label for="customerName">Customer Name:</label>
-    <input type="text" id="customerName" name="customerName" required><br><br>
+    <label for="customer_name">Customer Name:</label>
+    <input type="text" id="customer_name" name="customer_name" required><br><br>
 
-    <label for="mobileNumber">Mobile Number:</label>
-    <input type="text" id="mobileNumber" name="mobileNumber" required><br><br>
+    <label for="mobile_number">Mobile Number:</label>
+    <input type="text" id="mobile_number" name="mobile_number" required><br><br>
 
-    <label for="roomNumber">Room Number:</label>
-    <input type="number" id="roomNumber" name="roomNumber" required><br><br>
+    <label for="room_number">Room Number:</label>
+    <input type="text" id="room_number" name="room_number" required><br><br>
 
-    <label for="bookingDate">Booking Date (yyyy-mm-dd):</label>
-    <input type="date" id="bookingDate" name="bookingDate" required><br><br>
+    <label for="booking_date">Booking Date (yyyy-mm-dd):</label>
+    <input type="date" id="booking_date" name="booking_date" required><br><br>
 
     <button type="submit">Confirm Booking</button>
 </form>
+<script>
+    const formData = new FormData();
+    formData.append("roomNumber", document.getElementById("roomNumber").value);
+
+    fetch("confirmBooking", {
+        method: "POST",
+        body: formData
+    });
+
+</script>
 </body>
 </html>

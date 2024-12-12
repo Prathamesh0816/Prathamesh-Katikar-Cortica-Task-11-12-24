@@ -41,6 +41,7 @@ public class CancelBookingServlet extends HttpServlet {
                 bookingDAO.cancelBooking(updatedBooking);
                 bookingController.cancelBooking(booking);
                 resp.getWriter().println("Booking cancelled successfully for mobile number: " + booking.getMobile_number());
+
             }
             else {
                 resp.getWriter().println("No active booking found with the provided mobile number.");
